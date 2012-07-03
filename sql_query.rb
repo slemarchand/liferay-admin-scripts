@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011 Sébastien Le Marchand, All rights reserved.
+# Copyright (c) 2011-2012 SÃ©bastien Le Marchand, All rights reserved.
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -20,16 +20,19 @@
 
 # Constants (to update at your convenience) 
 
-QUERY = "SELECT * FROM USER_" 	# The SQL query to execute
-MAX_ROWS = 100 					# The max rows to display	
-CELL_MIN_WIDTH = 8				# The min width for a cell display
+QUERY = "
+	SELECT * 
+	FROM USER_" 	# The SQL query to execute
+MAX_ROWS = 100 		# The max rows to display	
+CELL_MIN_WIDTH = 8	# The min width for a cell display
 
 # Implementation
 
 java_import java.io.PrintStream
 java_import com.liferay.portal.kernel.dao.jdbc.DataAccess
 
-$out = PrintStream.new($out)
+# Uncomment the following line for Liferay version < 6.0.11 
+# $out = PrintStream.new($out)
 
 def log(message)
 	puts message
@@ -66,4 +69,3 @@ begin
 ensure
 	DataAccess.cleanUp(con, stmt, rs)
 end
-
