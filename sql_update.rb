@@ -31,8 +31,9 @@ UPDATE = "
 java_import java.io.PrintStream
 java_import com.liferay.portal.kernel.dao.jdbc.DataAccess
 
-# Uncomment the following line for Liferay version < 6.0.11 
-# $out = PrintStream.new($out)
+if $out.class == UnsyncByteArrayOutputStream # Fix for Liferay version < 6.0.11
+	$out = PrintStream.new($out)
+end
 
 def log(message)
 	puts message

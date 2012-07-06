@@ -15,7 +15,7 @@
 #
 # sql_query.rb
 #
-# Execute a SQL Query on the Liferay Database and display results
+# Execute a SQL Query on the Liferay Database and display results in ASCII format
 #
 
 # Constants (to update at your convenience) 
@@ -29,11 +29,13 @@ CELL_MIN_WIDTH = 8	# The min width for a cell display
 # Implementation
 
 java_import java.io.PrintStream
+java_import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream
 java_import com.liferay.portal.kernel.dao.jdbc.DataAccess
 
-# Uncomment the following line for Liferay version < 6.0.11 
-# $out = PrintStream.new($out)
-
+if $out.class == UnsyncByteArrayOutputStream # Fix for Liferay version < 6.0.11
+	$out = PrintStream.new($out)
+end
+	
 def log(message)
 	puts message
 	$out.println(message)
