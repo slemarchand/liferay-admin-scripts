@@ -69,4 +69,3 @@ begin
 ensure
 	DataAccess.cleanUp(con, stmt, rs)
 end
-
