@@ -22,7 +22,7 @@
 
 QUERY = "
 	SELECT * 
-	FROM USER_" 	# The SQL query to execute
+	FROM User_" 	# The SQL query to execute
 MAX_ROWS = 100 		# The max rows to display	
 
 # Implementation
