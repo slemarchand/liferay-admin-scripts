@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2012 Sébastien Le Marchand, All rights reserved.
+# Copyright (c) 2012-present Sébastien Le Marchand, All rights reserved.
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
