@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2012 Sébastien Le Marchand, All rights reserved.
+# Copyright (c) 2011-2012 SÃ©bastien Le Marchand, All rights reserved.
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -29,12 +29,7 @@ CELL_MIN_WIDTH = 8	# The min width for a cell display
 # Implementation
 
 java_import java.io.PrintStream
-java_import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream
 java_import com.liferay.portal.kernel.dao.jdbc.DataAccess
-
-if $out.class == UnsyncByteArrayOutputStream # Fix for Liferay version < 6.0.11
-	$out = PrintStream.new($out)
-end
 	
 def log(message)
 	puts message
