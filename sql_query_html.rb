@@ -30,13 +30,8 @@ MAX_ROWS = 100 		# The max rows to display
 # Implementation
 
 java_import java.io.PrintStream
-java_import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream
 java_import com.liferay.portal.kernel.dao.jdbc.DataAccess
 java_import com.liferay.portal.kernel.util.HtmlUtil
-
-if $out.class == UnsyncByteArrayOutputStream # Fix for Liferay version < 6.0.11
-	$out = PrintStream.new($out)
-end
 	
 def log(message)
 	puts message
