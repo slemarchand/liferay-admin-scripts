@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Sébastien Le Marchand, All rights reserved.
+ * Copyright (c) 2013 SÃ©bastien Le Marchand, All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -30,37 +30,38 @@ map = [
 	'11803':'FOOTER-STR'
 	] 
 
-// Implementation	
+// Implementation
 
 import com.liferay.portal.kernel.dao.orm.*
 import com.liferay.portal.util.*
 import com.liferay.portlet.journal.model.*
 import com.liferay.portlet.journal.service.*
+import com.liferay.portlet.dynamicdatamapping.model.*
+import com.liferay.portlet.dynamicdatamapping.service.*
+import com.liferay.portal.service.ClassNameLocalServiceUtil
 
 try {
 
-	map.each{ oldId, newId ->
-		s = JournalStructureLocalServiceUtil.getStructure(groupId, oldId, includeGlobalStructures)
-		s.setStructureId(newId)
-		JournalStructureLocalServiceUtil.updateJournalStructure(s)
-		
-		q = DynamicQueryFactoryUtil.forClass(JournalTemplate.class)
-		q.add(PropertyFactoryUtil.forName('structureId').eq(oldId))
-		templates = JournalTemplateLocalServiceUtil.dynamicQuery(q)
-		templates.each{ t ->
-			t.setStructureId(newId)
-			JournalTemplateLocalServiceUtil.updateJournalTemplate(t)
-		}
-		
-		q = DynamicQueryFactoryUtil.forClass(JournalArticle.class)
-		q.add(PropertyFactoryUtil.forName('structureId').eq(oldId))
-		articles = JournalArticleLocalServiceUtil.dynamicQuery(q)
-		articles.each{ a ->
-			a.setStructureId(newId)
-			JournalArticleLocalServiceUtil.updateJournalArticle(a)
-		}
-	}
+    map.each{ oldId, newId ->
+
+        cId = ClassNameLocalServiceUtil.getClassNameId(JournalArticle.class.getName())
+
+        s = DDMStructureLocalServiceUtil.getStructure(groupId, cId, oldId, includeGlobalStructures)
+        s
+        s.setStructureKey(newId)
+        DDMStructureLocalServiceUtil.updateDDMStructure(s)
+
+
+        q = DynamicQueryFactoryUtil.forClass(JournalArticle.class)
+        q.add(PropertyFactoryUtil.forName('structureId').eq(oldId))
+        articles = JournalArticleLocalServiceUtil.dynamicQuery(q)
+        articles.each{ a ->
+            a.setStructureId(newId)
+            JournalArticleLocalServiceUtil.updateJournalArticle(a)
+        }
+
+    }
 
 } catch (e) {
-	e.printStackTrace(out)
+    e.printStackTrace(out)
 }
