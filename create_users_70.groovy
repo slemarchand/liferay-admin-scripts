@@ -1,4 +1,5 @@
 import com.liferay.portal.scripting.executor.groovy.*
+import com.liferay.portal.kernel.service.*
 
 USERS = [
 	['user01@slemarchand.com', 'firstName1', 'lastName1'],
@@ -13,12 +14,28 @@ String[] ROLES = [
 	'Administrator'
 ]
 
-ctx = new GroovyScriptingContext()
+SITES_ROLES = [
+	'Guest':['Site Administrator']
 
-USERS.each{ 
-	(email, firstName, lastName) = it
-	user = new GroovyUser(email, PASSWORD, firstName, lastName, '')
-	user.create(ctx)
-	user.addRoles(ctx, ROLES)
+]
+
+try {
+	ctx = new GroovyScriptingContext()
+
+	USERS.each{ 
+		(email, firstName, lastName) = it
+		
+		user = new GroovyUser(email, PASSWORD, firstName, lastName, '')
+		user.create(ctx)
+		user.addRoles(ctx, ROLES)
+
+		SITES_ROLES.each{ siteName, siteRoles ->
+
+			group = GroupLocalServiceUtil.search(ctx.companyId, siteName, null, [:], true, 0, 1).get(0)
+
+			user.addSiteRoles(ctx, group.getGroupId(), (String[])siteRoles)
+		}
+	}
+} catch (e) {
+	e.printStackTrace(out)
 }
-
