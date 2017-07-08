@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Paweł Kruszewski (@ktor on github)
+ */
 import com.liferay.util.mail.*
 
 String from = ""

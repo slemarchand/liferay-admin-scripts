@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Paweł Kruszewski (@ktor on github)
+ */
 import com.liferay.portal.kernel.util.HtmlUtil
 
 try {

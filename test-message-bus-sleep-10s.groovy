@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Paweł Kruszewski (@ktor on github)
+ */
 package s;
 
 import com.liferay.portal.kernel.messaging.Message
