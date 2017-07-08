@@ -1,22 +1,11 @@
 /**
- * Copyright (c) 2013 Sébastien Le Marchand, All rights reserved.
+ * refactor_structure_ids.groovy
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * Refactor some structures IDs
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ * @author Sébastien Le Marchand (@slemarchand on github)
+ * @author Orin Fink (@einsty on github) - 
  */
-
-//
-// refactor_structure_ids.groovy
-//
-// Refactor some structures IDs
-//
 
 // Variables to update at your convenience
 
