@@ -47,6 +47,7 @@ BUNDLE_VERSION = ""
 
 import com.liferay.portal.scripting.groovy.internal.*;
 import org.osgi.framework.*;
+import java.util.*;
 
 PORTLET = binding.hasVariable("actionRequest");
 
@@ -91,6 +92,16 @@ Headers ===
 		println("${name}: ${value}");
 	}
 
+	println("""
+Bundles in use ===
+		""");
+	bundlesInUse = new HashSet();
+	for (s in b.getServicesInUse()){
+		bundlesInUse.add(s.getBundle());
+	}
+	for (sb in bundlesInUse){
+		println("${sb.getSymbolicName()} ${sb.getVersion()}");
+	}
 } else {	
 	message = "Bundle not found for symbolic name ${BUNDLE_SYMBOLIC_NAME} and version ${BUNDLE_VERSION==''?'*':BUNDLE_VERSION}";
 	if(PORTLET) {
