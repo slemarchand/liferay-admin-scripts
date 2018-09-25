@@ -93,7 +93,7 @@ Headers ===
 	}
 
 	println("""
-Bundles in use ===
+Services in use bundles ===
 		""");
 	bundlesInUse = new HashSet();
 	for (s in b.getServicesInUse()){
